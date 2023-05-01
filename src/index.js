@@ -4,6 +4,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { MagicShop } from './components/MagicShop';
+import { Stuffs } from './components/shop/spaghetti';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -1,9 +1,10 @@
 import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export const NavBar = () => {
-    
-    
+
+const navigate = useNavigate()
+
     return(
         <Box sx={{ flexGrow: 1}}>
             <AppBar position="static">
@@ -11,7 +12,7 @@ export const NavBar = () => {
                    <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                     Pop Up Magic Shop
                     </Typography>
-                    <Button color="inherit">Home Page</Button> 
+                    <Button color="inherit"><Link to={"http://localhost:3000"}/>Home Page</Button> 
                 </Toolbar>
             </AppBar>
         </Box>
