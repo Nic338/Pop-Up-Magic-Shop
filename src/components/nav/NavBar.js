@@ -12,7 +12,7 @@ const navigate = useNavigate()
                    <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                     Pop Up Magic Shop
                     </Typography>
-                    <Button color="inherit"><Link to={"http://localhost:3000"}/>Home Page</Button> 
+                    <Button color="inherit">Home Page</Button> 
                 </Toolbar>
             </AppBar>
         </Box>

@@ -8,42 +8,15 @@ import { useNavigate } from "react-router-dom"
 
 
 
-export const HomePage = () => {
+export const HomePage = ({levelInfo, setLevelInfo, levelSelectList, areaInfo, setAreaInfo, shopAreaList, wealthInfo, setWealthInfo, shopWealthList, handleGenerateItems, setShowList}) => {
     const classes = useStyles()
     const navigate = useNavigate()
 
-const [levelInfo, setLevelInfo] = useState({
-    partyLevel: ""
-})
-const [areaInfo, setAreaInfo] = useState({
-    shopArea: ""
-})
-const [wealthInfo, setWealthInfo] = useState({
-    shopWealth: ""
-})
-
-const levelSelectList = (event) => {
-        const copy = {...levelInfo}
-        copy.partyLevel = parseInt(event.target.value)
-        
-        setLevelInfo(copy)
-    }
-const shopAreaList = (event) => {
-        const copy = {...areaInfo}
-        copy.shopArea = parseInt(event.target.value)
-      
-        setAreaInfo(copy)
-    }      
-const shopWealthList = (event) => {
-        const copy = {...wealthInfo}
-        copy.shopWealth = parseInt(event.target.value)
-        setWealthInfo(copy)
-    }
 const handleGenerateClick = () => {
 navigate("/shop")
 }
-    return(
-        <>
+    return(  
+            <>
     <CssBaseline>
         <Typography variant="h2" align="center" mt={8}>
             Welcome to the Pop Up Magic Shop!
@@ -68,8 +41,9 @@ navigate("/shop")
                          wealthInfo={wealthInfo}
                          setWealthSelect={shopWealthList}/>
         </FormControl>
-        <Button onClick={handleGenerateClick} variant="contained">Generate My Shop!</Button>
+        <Button onClick={() => setShowList(true)} variant="contained">Generate My Shop!</Button>
     </CssBaseline> 
+    
         </>
     )
 }
