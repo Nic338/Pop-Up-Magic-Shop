@@ -13,6 +13,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import ReactMarkdown from 'react-markdown'
+import { Padding } from '@mui/icons-material';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -34,12 +36,14 @@ const handleExpandClick = () => {
   };
 
     return (
-        <Card sx={{maxWidth: 345}}key={propItem.id}>
+        <Card sx={{maxWidth: 350, padding: 1}}key={propItem.id}>
             <CardHeader title=""/>
             <CardContent>
             <Typography variant='body'>
             {propItem.name}
-            {propItem.price}
+            </Typography>
+            <Typography variant='body2'>
+            {propItem.price}gp
             </Typography>
             </CardContent>
             <CardActions>
@@ -57,13 +61,15 @@ const handleExpandClick = () => {
                         {propItem.type}
                     </Typography>
                     <Typography paragraph>
-                        {propItem.rarity}
+                        {propItem.rarity.charAt(0).toUpperCase() + propItem.rarity.slice(1)}
                     </Typography>
                     <Typography paragraph>
-                        {propItem.desc}
+                        <ReactMarkdown>
+                            {propItem.desc}
+                            </ReactMarkdown>
                     </Typography>
                     <Typography paragraph>
-                        {propItem.requires_attunement}
+                        {propItem.requires_attunement.charAt(0).toUpperCase() + propItem.requires_attunement.slice(1)}
                     </Typography>
                 </CardContent>
             </Collapse>
