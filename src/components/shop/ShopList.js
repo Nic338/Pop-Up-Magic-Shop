@@ -1,58 +1,67 @@
 import { useEffect, useState } from "react"
 import { getMagicItems } from "../ApiManager"
-import { Button, Typography } from "@mui/material"
+import { Box, Button, Typography } from "@mui/material"
 import { ShopItem } from "./ShopItem"
 
 export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems, setMagicItems, limitedMagicItems, setLimitedMagicItems, setShowList }) => {
 
     //figure out params for two other choices
-
+    
+    
     //filter by rarity
     const levelChoice = () => {
         let myLeveledItems = []
-        if (levelInfo.partyLevel <= 4) {
-            myLeveledItems = magicItems.filter((magicItem) => { magicItem.rarity === "rare" && magicItem.rarity === "very rare" && magicItem.rarity === "legendary" && magicItem.rarity === "artifact" })
-            // return myLeveledItems
-        } else if (levelInfo.partyLevel >= 5 && levelInfo.partyLevel <= 8) {
-            myLeveledItems = magicItems.filter((magicItem) => { magicItem.rarity === "very rare" && magicItem.rarity === "legendary" && magicItem.rarity === "artifact" })
-            // return myLeveledItems
-        } else if (levelInfo.partyLevel >= 9 && levelInfo.partyLevel <= 12) {
-            myLeveledItems = magicItems.filter((magicItem) => { magicItem.rarity === "legendary" && magicItem.rarity === "artifact" })
-            // return myLeveledItems
+        if (levelInfo.partyLevel >= 17 && levelInfo.partyLevel <= 20) {
+            myLeveledItems = magicItems.filter((magicItem) => magicItem.rarity.includes("rare") || magicItem.rarity.includes("very rare") || magicItem.rarity.includes("legendary") || magicItem.rarity.includes("artifact"))
+            return myLeveledItems
         } else if (levelInfo.partyLevel >= 13 && levelInfo.partyLevel <= 16) {
-            myLeveledItems = magicItems.filter((magicItem) => { magicItem.rarity === "uncommon" && magicItem.rarity === "rare" })
-            // return myLeveledItems
-        } else if (levelInfo.partyLevel >= 17 && levelInfo.partyLevel <= 20) {
-            myLeveledItems = magicItems.filter((magicItem) => magicItem.rarity === "uncommon" && magicItem.rarity)
-
+            myLeveledItems = magicItems.filter((magicItem) => magicItem.rarity.includes("very rare") || magicItem.rarity.includes("legendary") || magicItem.rarity.includes("artifact"))
+            return myLeveledItems
+        } else if (levelInfo.partyLevel >= 9 && levelInfo.partyLevel <= 12) {
+            myLeveledItems = magicItems.filter((magicItem) => magicItem.rarity.includes("legendary") || magicItem.rarity.includes("artifact"))
+            return myLeveledItems
+        } else if (levelInfo.partyLevel >= 5 && levelInfo.partyLevel <= 8) {
+            myLeveledItems = magicItems.filter((magicItem) => magicItem.rarity.includes("uncommon") || magicItem.rarity.includes("rare"))
+            return myLeveledItems
+        } else if (levelInfo.partyLevel <= 4) {
+            myLeveledItems = magicItems.filter((magicItem) => magicItem.rarity.includes("uncommon") || magicItem.rarity.includes("common"))
+            return myLeveledItems
         }
-        return myLeveledItems
     }
+    
+    console.log(levelChoice())
     // fitler by price
-    const wealthChoice = () => {
+    const wealthChoice = (leveledItems) => {
         let myPricedItems = []
         if (wealthInfo.shopWealth === 1) {
-            myPricedItems = magicItems.filter((magicItem) => { magicItem.price <= 1500 })
-            // return myPricedItems
+            myPricedItems = leveledItems.filter((magicItem) => magicItem.price <= 1500)
+            return myPricedItems
         }
         else if (wealthInfo.shopWealth === 2) {
-            myPricedItems = magicItems.filter((magicItem) => { magicItem.price <= 15000 })
-            // return myPricedItems
+            myPricedItems = leveledItems.filter((magicItem) => magicItem.price <= 15000)
+            return myPricedItems
         }
         else if (wealthInfo.shopWealth === 3) {
-            myPricedItems = magicItems.filter((magicItem) => { magicItem.price <= 55000 })
-            // return myPricedItems
+            myPricedItems = leveledItems.filter((magicItem) => magicItem.price <= 55000)
+            return myPricedItems
         }
         else if (wealthInfo.shopWealth === 4) {
-            myPricedItems = magicItems.filter((magicItem) => { magicItem.price <= 150000 })
-            // return myPricedItems
+            myPricedItems = leveledItems.filter((magicItem) => magicItem.price <= 150000)
+            return myPricedItems
         }
         else if (wealthInfo.shopWealth === 5) {
-            myPricedItems = magicItems.filter((magicItem) => { magicItem.price <= 550000 })
+            myPricedItems = leveledItems.filter((magicItem) => magicItem.price <= 550000)
+            
+            return myPricedItems
         }
-        return myPricedItems
     }
+    
+    
 
+    
+    //level choice and wealth choice both added to a new array
+    //new array and setMagicItems so that areaChoice will be the last thing to run
+    
     const areaChoice = () => {
         let myLimitedItems = []
         const randomMagicItems = magicItems.map(x => {
@@ -81,19 +90,21 @@ export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems, setMagic
     //    setLimitedMagicItems(levelChoice())
     //    .then(setLimitedMagicItems(areaChoice()))
     useEffect(() => {
+        const leveledItems = levelChoice()
+        setMagicItems(wealthChoice(leveledItems))
         setLimitedMagicItems(areaChoice())
-    }, [magicItems])
+    }, [])
 
 
     return (<>
         <Typography variant="h2" align="center" m={8} >Your Item Shop</Typography>
-        <article>
+        <Box sx={{display: 'flex', flexDirection: 'column', wrap: 'wrap'}}>
             {
                 limitedMagicItems?.map(
                     (magicItem) => <ShopItem key={`${magicItem.id}`} propItem={magicItem} />
                 )
             }
-        </article>
+        </Box>
         <Button variant="contained" onClick={() => setShowList(false)}>Generate a New Shop</Button>
     </>
     )
