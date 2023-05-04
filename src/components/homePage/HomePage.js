@@ -1,4 +1,4 @@
-import { Button, CssBaseline, FormControl, InputLabel, OutlinedInput, Select, Typography } from "@mui/material"
+import { Box, Button, CssBaseline, FormControl, InputLabel, OutlinedInput, Select, Typography } from "@mui/material"
 import { useStyles } from "../styles"
 import { useEffect, useState } from "react"
 import { Levels } from "./partyLevelSelect"
@@ -41,7 +41,9 @@ navigate("/shop")
                          wealthInfo={wealthInfo}
                          setWealthSelect={shopWealthList}/>
         </FormControl>
+        <Box sx={{display: 'flex', justifyContent: 'center' }} >
         <Button onClick={() => setShowList(true)} variant="contained">Generate My Shop!</Button>
+        </Box>
     </CssBaseline> 
     
         </>

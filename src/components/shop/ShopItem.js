@@ -15,6 +15,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ReactMarkdown from 'react-markdown'
 import { Padding } from '@mui/icons-material';
+import { Button, Grid } from '@mui/material';
+import { createNewOrderData } from '../ApiManager';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -35,9 +37,20 @@ const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
+const handleAddItemToOrder = () => {
+
+    const itemToSendToAPI = {
+        magicItemId: propItem.id
+    }
+
+    return createNewOrderData(itemToSendToAPI)
+}
+
+
     return (
-        <Card sx={{maxWidth: 350, padding: 1}}key={propItem.id}>
-            <CardHeader title=""/>
+        <Grid>
+            <Card sx={{maxWidth: 290, padding: 1, bgcolor: '#716969', color: "white", marginBottom: 3, marginLeft: 1,}}key={propItem.id}>
+                <CardHeader title=""/>
             <CardContent>
             <Typography variant='body'>
             {propItem.name}
@@ -55,12 +68,12 @@ const handleExpandClick = () => {
                     <ExpandMoreIcon />
                 </ExpandMore>
             </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <Collapse in={expanded} timeout="auto" unmountOnExit color='white'>
                 <CardContent>
-                    <Typography paragraph>
+                    <Typography variant='h6'>
                         {propItem.type}
                     </Typography>
-                    <Typography paragraph>
+                    <Typography variant='h6'>
                         {propItem.rarity.charAt(0).toUpperCase() + propItem.rarity.slice(1)}
                     </Typography>
                     <Typography paragraph>
@@ -71,9 +84,11 @@ const handleExpandClick = () => {
                     <Typography paragraph>
                         {propItem.requires_attunement.charAt(0).toUpperCase() + propItem.requires_attunement.slice(1)}
                     </Typography>
+                    <Button variant='text' size='small' onClick={() => handleAddItemToOrder()}>Add to Order</Button>
                 </CardContent>
             </Collapse>
         </Card>
+    </Grid>
     )
 }
 

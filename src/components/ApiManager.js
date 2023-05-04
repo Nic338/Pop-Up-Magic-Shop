@@ -14,3 +14,39 @@ export const getMagicItems = () => {
     return fetch(`http://localhost:8088/magicItems`)
     .then(response => response.json())
 }
+export const getOrdersWithDetails = () => {
+    return fetch(`http://localhost:8088/orders?_expand=magicItem`)
+    .then(response => response.json())
+}
+export const createNewOrderData = (itemToSendToAPI) => {
+    return fetch(`http://localhost:8088/orders`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(itemToSendToAPI)
+    })
+    .then(response => response.json())
+}
+export const deleteAllOrders = (order) => {
+    return fetch(`http://localhost:8088/orders/${order.id}`, {
+        method: "DELETE"
+    })
+    .then(() => {
+
+    })
+}
+export const getSpecificMagicItem = (item) => {
+    return fetch(`http://localhost:8088/magicItems/${item.id}`)
+    .then(response => response.json)
+}
+export const editItem = (propItem) => {
+    return fetch(`http://localhost:8088/magicItems/${propItem.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(propItem)
+    })
+    .then(response => response.json())
+}

@@ -35,7 +35,6 @@ const shopWealthList = (event) => {
 
 
 const [magicItems, setMagicItems] = useState([])
-const [limitedMagicItems, setLimitedMagicItems] = useState([])
 const [showList, setShowList] = useState(false)
 
 useEffect(() => {
@@ -64,8 +63,6 @@ return (
     wealthInfo={wealthInfo}
     magicItems={magicItems}
     setMagicItems={setMagicItems}
-    limitedMagicItems={limitedMagicItems}
-    setLimitedMagicItems={setLimitedMagicItems}
     setShowList={setShowList}/>
     </>
 )
