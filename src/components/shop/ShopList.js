@@ -1,12 +1,9 @@
-import { Box, Button, Grid, Typography } from "@mui/material"
+import { Box, Button, CssBaseline, Grid, ThemeProvider, Typography } from "@mui/material"
 import { ShopItem } from "./ShopItem"
+import { bodyTheme, theme } from "../styles"
 
-export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems}) => {
+export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems }) => {
 
-
-    //figure out params for two other choices
-    
-    
     //filter by rarity
     const levelChoice = () => {
         let myLeveledItems = []
@@ -27,7 +24,7 @@ export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems}) => {
             return myLeveledItems
         }
     }
-    
+
     // console.log(levelChoice())
     // fitler by price
     const wealthChoice = (leveledItems) => {
@@ -53,12 +50,12 @@ export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems}) => {
             return myPricedItems
         }
     }
-    
 
-    
+
+
     //level choice and wealth choice both added to a new array
     //new array and setMagicItems so that areaChoice will be the last thing to run
-    
+
     const areaChoice = (pricedItems) => {
         let myLimitedItems = []
         const randomMagicItems = pricedItems.map(x => {
@@ -83,17 +80,14 @@ export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems}) => {
         }
 
     }
-    //    setLimitedMagicItems(levelChoice())
-    //    .then(setLimitedMagicItems(areaChoice()))
-    // console.log(leveledItems)
-    
-const itemsToShow = () => {
-    const leveledItems = levelChoice()
-    const pricedItems = wealthChoice(leveledItems)
-    const areaItems = areaChoice(pricedItems)
-    
-    return areaItems
-}
+
+    const itemsToShow = () => {
+        const leveledItems = levelChoice()
+        const pricedItems = wealthChoice(leveledItems)
+        const areaItems = areaChoice(pricedItems)
+
+        return areaItems
+    }
 
 
     const reloadPage = () => {
@@ -101,22 +95,27 @@ const itemsToShow = () => {
     }
 
     return (
-    
         <>
-        <Typography variant="h2" align="center" m={8} >Your Item Shop</Typography>
-        <Grid container>
-        <Box sx={{display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center"}}>
-            {
-                itemsToShow().map(
-                    (magicItem) => <ShopItem key={`${magicItem.id}`} propItem={magicItem} />
-                    )
-                }
-        </Box>
-        </Grid>
-        <Box sx={{display: 'flex', justifyContent: 'center' }}>
-        <Button variant="contained" onClick={() => reloadPage()}>Generate a New Shop</Button>
-        <Button variant="contained" href="/orders" sx={{marginLeft: 3}}> Go to my order</Button>
-        </Box>
-    </>
+            <ThemeProvider theme={bodyTheme}>
+                <CssBaseline>
+                    <Typography variant="h2" align="center" m={8} >Your Item Shop</Typography>
+                    <Grid container>
+                        <Box sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
+                            {
+                                itemsToShow().map(
+                                    (magicItem) => <ShopItem key={`${magicItem.id}`} propItem={magicItem} />
+                                )
+                            }
+                        </Box>
+                    </Grid>
+                    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <ThemeProvider theme={theme}>
+                            <Button variant="contained" onClick={() => reloadPage()}>Generate a New Shop</Button>
+                            <Button variant="contained" href="/orders" sx={{ marginLeft: 3 }}> Go to my order</Button>
+                        </ThemeProvider>
+                    </Box>
+                </CssBaseline>
+            </ThemeProvider>
+        </>
     )
 }

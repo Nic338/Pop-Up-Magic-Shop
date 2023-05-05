@@ -1,3 +1,6 @@
+import { useNavigate } from "react-router-dom"
+
+
 export const getPartyLevel = () => {
     return fetch(`http://localhost:8088/partyLevel`)
     .then(response => response.json())
@@ -28,25 +31,31 @@ export const createNewOrderData = (itemToSendToAPI) => {
     })
     .then(response => response.json())
 }
-export const deleteAllOrders = (order) => {
-    return fetch(`http://localhost:8088/orders/${order.id}`, {
-        method: "DELETE"
-    })
-    .then(() => {
 
-    })
-}
-export const getSpecificMagicItem = (item) => {
-    return fetch(`http://localhost:8088/magicItems/${item.id}`)
-    .then(response => response.json)
-}
-export const editItem = (propItem) => {
-    return fetch(`http://localhost:8088/magicItems/${propItem.id}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(propItem)
-    })
-    .then(response => response.json())
-}
+export const deleteAllOrders = (orders) => {
+    const fetchArray = []
+    orders.forEach((order) => {
+        fetchArray.push(
+            fetch(`http://localhost:8088/orders/${order.id}`, {
+                method: "DELETE"
+            })
+            )
+        })
+        Promise.all(fetchArray)
+        .then()
+    }
+
+    export const getSpecificMagicItem = (item) => {
+        return fetch(`http://localhost:8088/magicItems/${item.id}`)
+        .then(response => response.json)
+    }
+    export const editItem = (propItem) => {
+        return fetch(`http://localhost:8088/magicItems/${propItem.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(propItem)
+        })
+        .then(response => response.json())
+    }

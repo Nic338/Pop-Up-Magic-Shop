@@ -1,3 +1,4 @@
+import { createTheme } from '@mui/material';
 import { makeStyles } from 'tss-react/mui';
 
 export const useStyles = makeStyles(() => ({
@@ -19,3 +20,30 @@ export const modalStyle = {
     boxShadow: 24,
     p: 4,
   };
+
+export const theme = createTheme({
+    palette: {
+        primary: {
+            main: '#6d1a36'
+        }
+    }
+})
+export const bodyTheme = createTheme({
+    components: {
+        MuiCssBaseline: {
+            styleOverrides: {
+                body: {
+                    backgroundColor: '#f2e3bc',
+                    color: '#414535'
+                }
+            }
+        }
+    }
+})
+export const selectTheme = createTheme({
+    palette: {
+        primary: {
+            main: '#53917e'
+        }
+    }
+})

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import { ThemeProvider, styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -12,8 +12,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ReactMarkdown from 'react-markdown'
 import { Box, Button, Grid } from '@mui/material';
 import { createNewOrderData } from '../ApiManager';
-import { useEffect } from 'react';
-import { modalStyle } from '../styles';
+import { modalStyle, selectTheme } from '../styles';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Backdrop from '@mui/material/Backdrop';
@@ -41,14 +40,11 @@ export const ShopItem = ({ propItem }) => {
     };
 
     const handleAddItemToOrder = () => {
-
         const itemToSendToAPI = {
             magicItemId: propItem.id
         }
-
         return createNewOrderData(itemToSendToAPI)
     }
-
 
     return (
         <Grid>
@@ -61,6 +57,10 @@ export const ShopItem = ({ propItem }) => {
                     <Typography variant='body2'>
                         {propItem.price}gp
                     </Typography>
+                    <ThemeProvider theme={selectTheme}>
+                        <Button variant='text' size='small' onClick={
+                            () => handleAddItemToOrder().then(() => handleOpen())}>Add to Order</Button>
+                    </ThemeProvider>
                 </CardContent>
                 <CardActions>
                     <ExpandMore
@@ -87,8 +87,6 @@ export const ShopItem = ({ propItem }) => {
                         <Typography paragraph>
                             {propItem.requires_attunement.charAt(0).toUpperCase() + propItem.requires_attunement.slice(1)}
                         </Typography>
-                        <Button variant='text' size='small' onClick={
-                            () => handleAddItemToOrder().then(() => handleOpen())}>Add to Order</Button>
                         <Modal
                             aria-labelledby="transition-modal-title"
                             aria-describedby="transition-modal-description"
@@ -106,7 +104,7 @@ export const ShopItem = ({ propItem }) => {
                                 <Box sx={modalStyle}>
                                     <Typography id="transition-modal-title" variant="h6" component="h2">
                                     </Typography>
-                                    <Typography id="transition-modal-description" sx={{ mt: 2 }}>
+                                    <Typography id="transition-modal-description" sx={{ display: 'flex', justifyContent: 'center' }}>
                                         Added {propItem.name} to order!
                                     </Typography>
                                 </Box>

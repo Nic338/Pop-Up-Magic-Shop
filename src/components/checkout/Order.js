@@ -1,4 +1,4 @@
-import { Button, TableCell, TableRow } from "@mui/material"
+import { Button, TableCell, TableRow, ThemeProvider } from "@mui/material"
 import React, { useState } from "react"
 import { editItem, getMagicItems } from "../ApiManager"
 import { Container, TextField } from "@mui/material"
@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
-import { modalStyle } from '../styles';
+import { bodyTheme, modalStyle, selectTheme, theme } from '../styles';
 
 export const Order = ({ propOrderItem, setMagicItems }) => {
 
@@ -33,21 +33,28 @@ export const Order = ({ propOrderItem, setMagicItems }) => {
       .then(window.location.reload(false))
   }
 
-
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-
-
-
+  
+// Dice Roller
+  // var dice = {
+  //   sides: 6,
+  //   roll: function () {
+  //     var randomNumber = Math.floor(Math.random() * this.sides) + 1;
+  //     return randomNumber;
+  //   }
+  // }
+  
   return (
     <TableRow key={propOrderItem.magicItem?.name}>
-      <TableCell>{propOrderItem.magicItem?.name}</TableCell>
+      <TableCell sx={{ fontSize: 'large' }}>{propOrderItem.magicItem?.name}</TableCell>
       <TableCell>
-        <Button variant="contained" size="small" onClick={() => handleOpen()}>
-          Haggle Price?
-        </Button>
+        <ThemeProvider theme={theme}>
+          <Button variant="contained" size="small" onClick={() => handleOpen()}>
+            Haggle Price?
+          </Button>
+        </ThemeProvider>
         <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
@@ -62,29 +69,33 @@ export const Order = ({ propOrderItem, setMagicItems }) => {
           }}>
           <Fade in={open}>
             <Box sx={modalStyle}>
-              <Typography id="transition-modal-title" variant="h6" component="h2">
-                Set New Price
-              </Typography>
-              <Container sx={{display: "flex"}}>
-                <TextField
-                  required
-                  id="item-price-edit"
-                  label="Required"
-                  defaultValue={itemInfo.price}
-                  onChange={(event) => {
-                    const copy = { ...itemInfo }
-                    copy.price = parseInt(event.target.value)
-                    updateItemInfo(copy)
-                  }} />
-                <Button variant="contained" size="small" onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}>Save Edit</Button>
-              </Container>
+              <ThemeProvider theme={selectTheme}>
+                <Typography id="transition-modal-title" variant="h6" component="h2">
+                  Set New Price
+                </Typography>
+                <Container sx={{ display: "flex" }}>
+                  <TextField
+                    required
+                    id="item-price-edit"
+                    label="Required"
+                    defaultValue={itemInfo.price}
+                    onChange={(event) => {
+                      const copy = { ...itemInfo }
+                      copy.price = parseInt(event.target.value)
+                      updateItemInfo(copy)
+                    }} />
+                  <ThemeProvider theme={theme}>
+                    <Button variant="contained" size="small" onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}>Save Edit</Button>
+                  </ThemeProvider>
+                </Container>
+              </ThemeProvider>
             </Box>
           </Fade>
         </Modal>
       </TableCell>
-      <TableCell align="right">{propOrderItem.magicItem?.type}</TableCell>
-      <TableCell align="right">{propOrderItem.magicItem?.rarity.charAt(0).toUpperCase() + propOrderItem.magicItem?.rarity.slice(1)}</TableCell>
-      <TableCell align="right">{propOrderItem.magicItem?.price}gp</TableCell>
+      <TableCell align="right" sx={{ fontSize: 'large' }}>{propOrderItem.magicItem?.type}</TableCell>
+      <TableCell align="right" sx={{ fontSize: 'large' }}>{propOrderItem.magicItem?.rarity.charAt(0).toUpperCase() + propOrderItem.magicItem?.rarity.slice(1)}</TableCell>
+      <TableCell align="right" sx={{ fontSize: 'large' }}>{propOrderItem.magicItem?.price}gp</TableCell>
     </TableRow>
   )
 }
