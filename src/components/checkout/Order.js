@@ -1,25 +1,90 @@
 import { Button, TableCell, TableRow } from "@mui/material"
-import { useState } from "react"
-import { OrderEditForm } from "./OrderEditForm"
+import React, { useState } from "react"
+import { editItem, getMagicItems } from "../ApiManager"
+import { Container, TextField } from "@mui/material"
+import Backdrop from '@mui/material/Backdrop';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Fade from '@mui/material/Fade';
+import Typography from '@mui/material/Typography';
+import { modalStyle } from '../styles';
 
-export const Order = ({propOrderItem, setMagicItems}) => {
+export const Order = ({ propOrderItem, setMagicItems }) => {
 
-const [showEdit, setShowEdit] = useState(false)
+  const [itemInfo, updateItemInfo] = useState({
+    slug: propOrderItem.magicItem?.slug,
+    name: propOrderItem.magicItem?.name,
+    type: propOrderItem.magicItem?.type,
+    desc: propOrderItem.magicItem?.desc,
+    rarity: propOrderItem.magicItem?.rarity,
+    requires_attunement: propOrderItem.magicItem?.requires_attunement,
+    document__slug: propOrderItem.magicItem?.document__slug,
+    document__title: propOrderItem.magicItem?.document__title,
+    id: propOrderItem.magicItem?.id,
+    price: propOrderItem.magicItem?.price
+  })
 
-return (
-!showEdit ?
-    <>
-<TableRow key={propOrderItem.magicItem?.name}>
-              <TableCell>{propOrderItem.magicItem?.name}</TableCell>
-              <TableCell>
-                <Button variant="contained" size="small" onClick={() => setShowEdit(true)}>Haggle Price?</Button>
-              </TableCell>
-              <TableCell align="right">{propOrderItem.magicItem?.type}</TableCell>
-              <TableCell align="right">{propOrderItem.magicItem?.rarity.charAt(0).toUpperCase() + propOrderItem.magicItem?.rarity.slice(1)}</TableCell>
-              <TableCell align="right">{propOrderItem.magicItem?.price}gp</TableCell>
-            </TableRow>
-</>
-:
-<OrderEditForm propOrderItem={propOrderItem} setShowEdit={setShowEdit} setMagicItems={setMagicItems}/>
-)
+  const handleSaveButtonClick = (e) => {
+    e.preventDefault()
+    const saveItem = { ...itemInfo }
+    editItem(saveItem)
+      .then(() => getMagicItems())
+      .then((updatedItem) => setMagicItems(updatedItem))
+      .then(window.location.reload(false))
+  }
+
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+
+
+
+  return (
+    <TableRow key={propOrderItem.magicItem?.name}>
+      <TableCell>{propOrderItem.magicItem?.name}</TableCell>
+      <TableCell>
+        <Button variant="contained" size="small" onClick={() => handleOpen()}>
+          Haggle Price?
+        </Button>
+        <Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          open={open}
+          onClose={handleClose}
+          closeAfterTransition
+          slots={{ backdrop: Backdrop }}
+          slotProps={{
+            backdrop: {
+              timeout: 500,
+            },
+          }}>
+          <Fade in={open}>
+            <Box sx={modalStyle}>
+              <Typography id="transition-modal-title" variant="h6" component="h2">
+                Set New Price
+              </Typography>
+              <Container sx={{display: "flex"}}>
+                <TextField
+                  required
+                  id="item-price-edit"
+                  label="Required"
+                  defaultValue={itemInfo.price}
+                  onChange={(event) => {
+                    const copy = { ...itemInfo }
+                    copy.price = parseInt(event.target.value)
+                    updateItemInfo(copy)
+                  }} />
+                <Button variant="contained" size="small" onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}>Save Edit</Button>
+              </Container>
+            </Box>
+          </Fade>
+        </Modal>
+      </TableCell>
+      <TableCell align="right">{propOrderItem.magicItem?.type}</TableCell>
+      <TableCell align="right">{propOrderItem.magicItem?.rarity.charAt(0).toUpperCase() + propOrderItem.magicItem?.rarity.slice(1)}</TableCell>
+      <TableCell align="right">{propOrderItem.magicItem?.price}gp</TableCell>
+    </TableRow>
+  )
 }
