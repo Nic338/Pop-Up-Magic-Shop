@@ -31,7 +31,7 @@ export const Order = ({ propOrderItem, setMagicItems }) => {
       .then(() => getMagicItems())
       .then((updatedItem) => setMagicItems(updatedItem))
       .then(window.location.reload(false))
-  }
+  };
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
