@@ -17,21 +17,35 @@ useEffect(
     
     return (
         <>
-            <select
-                label="Shop Wealthiness"
-                value={wealthInfo.shopWealth}
-                onChange={event => setWealthSelect(event)}
-                required>
-                   <option value="">Financial Status of Shop</option>
-                    {
-                        shopWealths.map(shopWealth => {
-                            return <option key={shopWealth.id} value={shopWealth.id}>
-                                {shopWealth.wealth}
-                            </option>
-                        })
-                    }
-                    
-                </select>      
+        <Select
+        id="wealth-select"
+        label="Financial Status of Shop"
+        displayEmpty
+        value={wealthInfo.shopWealth}
+        onChange={event => setWealthSelect(event)}>
+            {
+                shopWealths.map((shopWealth) => {
+                 return <MenuItem key={shopWealth.id} value={shopWealth.id}>
+                  {shopWealth.wealth}
+                  </MenuItem>  
+                })
+            }           
+        </Select>
         </>
     )
 }
+            // <select
+            //     label="Shop Wealthiness"
+            //     value={wealthInfo.shopWealth}
+            //     onChange={event => setWealthSelect(event)}
+            //     required>
+            //        <option value="">Financial Status of Shop</option>
+            //         {
+            //             shopWealths.map(shopWealth => {
+            //                 return <option key={shopWealth.id} value={shopWealth.id}>
+            //                     {shopWealth.wealth}
+            //                 </option>
+            //             })
+            //         }
+                    
+            //     </select>      

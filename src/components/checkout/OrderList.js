@@ -10,7 +10,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useNavigate } from "react-router-dom";
-import { OrderEditForm } from "./OrderEditForm";
 import { Order } from "./Order";
 
 export const Orders = () => {
@@ -46,11 +45,12 @@ const clearAllOrders = () => {
     navigate("/")
 }
 
+
 return (
     <>
 <Typography variant="h2" align="center" mt={1}>Checkout</Typography>
 <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="spanning table" mb={2}>
+      <Table sx={{ minWidth: 700, bottomMargin: 8 }} aria-label="spanning table" mb={2}>
         <TableHead>
           <TableRow>
             <TableCell align="center" colSpan={4} sx={{fontSize: "larger"}}>
@@ -78,8 +78,8 @@ return (
         </TableBody>
       </Table>
     </TableContainer>
-    <Box sx={{display: 'flex', justifyContent: 'center', topMargin: '3' }}>
-        <Button variant='contained' onClick={(event) => clearAllOrders(event)}>Remove Orders</Button>
+    <Box sx={{display: 'flex', justifyContent: 'center', topMargin: 5 }}>
+        <Button variant='contained' onClick={(event) => clearAllOrders(event)} sx={{topMargin: 5}}>Remove Orders</Button>
     </Box>
 </>
 )

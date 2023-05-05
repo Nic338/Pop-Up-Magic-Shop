@@ -18,31 +18,33 @@ navigate("/shop")
     return(  
             <>
     <CssBaseline>
-        <Typography variant="h2" align="center" mt={8}>
+        <Typography variant="h2" align="center" mt={8} mb={8}>
             Welcome to the Pop Up Magic Shop!
         </Typography>
+        <Box sx={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
         <FormControl className={classes.shopSelector} sx={{minWidth: 300, marginLeft: 33}} >
-            <InputLabel id="party-level-select"></InputLabel>
+            <InputLabel id="party-level-select">Average Party Level</InputLabel>
                 <Levels setLevelInfo={setLevelInfo} 
                         levelInfo={levelInfo}
                         setLevelSelect={levelSelectList}/>
         </FormControl>
 
         <FormControl className={classes.shopSelector}sx={{minWidth: 300, marginLeft: 33}}>
-            <InputLabel id="shop-area-select"></InputLabel>
+            <InputLabel id="shop-area-select">Shop Location</InputLabel>
                 <Areas  setAreaInfo={setAreaInfo} 
                         areaInfo={areaInfo}
                         setAreaSelect={shopAreaList}/>
         </FormControl>
 
         <FormControl className={classes.shopSelector}sx={{minWidth: 300, marginLeft: 33}}>
-            <InputLabel id="shop-wealth"></InputLabel>
+            <InputLabel id="shop-wealth">Financial Status of Shop</InputLabel>
                 <Wealths setWealthInfo={setWealthInfo} 
                          wealthInfo={wealthInfo}
                          setWealthSelect={shopWealthList}/>
         </FormControl>
-        <Box sx={{display: 'flex', justifyContent: 'center' }} >
-        <Button onClick={() => setShowList(true)} variant="contained">Generate My Shop!</Button>
+         </Box>
+        <Box sx={{display: 'flex', justifyContent: 'right' }} >
+        <Button onClick={() => setShowList(true)} sx={{marginTop: 8, marginRight: 8}} variant="contained">Generate My Shop!</Button>
         </Box>
     </CssBaseline> 
     

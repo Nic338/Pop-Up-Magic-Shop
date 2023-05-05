@@ -105,7 +105,7 @@ const itemsToShow = () => {
         <>
         <Typography variant="h2" align="center" m={8} >Your Item Shop</Typography>
         <Grid container>
-        <Box sx={{display: "flex", flexDirection: "row", flexWrap: "wrap"}}>
+        <Box sx={{display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center"}}>
             {
                 itemsToShow().map(
                     (magicItem) => <ShopItem key={`${magicItem.id}`} propItem={magicItem} />
@@ -115,6 +115,7 @@ const itemsToShow = () => {
         </Grid>
         <Box sx={{display: 'flex', justifyContent: 'center' }}>
         <Button variant="contained" onClick={() => reloadPage()}>Generate a New Shop</Button>
+        <Button variant="contained" href="/orders" sx={{marginLeft: 3}}> Go to my order</Button>
         </Box>
     </>
     )
