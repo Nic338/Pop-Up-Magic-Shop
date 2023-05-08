@@ -12,6 +12,7 @@ import Paper from '@mui/material/Paper';
 import { useNavigate } from "react-router-dom";
 import { Order } from "./Order";
 import { bodyTheme, selectTheme, theme } from "../styles";
+import { DiscountForm } from "./DiscountForm";
 
 export const Orders = () => {
 
@@ -51,7 +52,7 @@ export const Orders = () => {
     <>
       <ThemeProvider theme={bodyTheme}>
         <CssBaseline>
-          <Typography variant="h2" align="center" mt={1}>Checkout</Typography>
+          <Typography variant="h2" align="center" mt={3} mb={4}>Checkout</Typography>
           <ThemeProvider theme={selectTheme}>
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 700, bottomMargin: 8 }} aria-label="spanning table" mb={2}>
@@ -83,13 +84,16 @@ export const Orders = () => {
               </Table>
             </TableContainer>
           </ThemeProvider>
-          <Box sx={{ display: 'flex', justifyContent: 'center', topMargin: 5 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'center', topMargin: 5 , paddingTop: 6}}>
             <ThemeProvider theme={theme}>
               <Button variant='contained' onClick={(event) => {
                 event.preventDefault()
                 clearAllOrders(orders)
               }} sx={{ topMargin: 5 }}>Remove Orders</Button>
             </ThemeProvider>
+          </Box>
+          <Box>
+            <DiscountForm orderPrice={totalPrice}/>
           </Box>
         </CssBaseline>
       </ThemeProvider>

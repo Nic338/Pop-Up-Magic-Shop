@@ -51,8 +51,6 @@ export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems }) => {
         }
     }
 
-
-
     //level choice and wealth choice both added to a new array
     //new array and setMagicItems so that areaChoice will be the last thing to run
 
