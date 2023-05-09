@@ -34,16 +34,20 @@ export const ShopItem = ({ propItem }) => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    // const [magicItemIds, updateMagicItemIds] = React.useState([])
+
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
+
 
     const handleAddItemToOrder = () => {
         const itemToSendToAPI = {
             magicItemId: propItem.id
         }
         return createNewOrderData(itemToSendToAPI)
+
     }
 
     return (
@@ -87,31 +91,31 @@ export const ShopItem = ({ propItem }) => {
                         <Typography paragraph>
                             {propItem.requires_attunement.charAt(0).toUpperCase() + propItem.requires_attunement.slice(1)}
                         </Typography>
-                        <Modal
-                            aria-labelledby="transition-modal-title"
-                            aria-describedby="transition-modal-description"
-                            open={open}
-                            onClose={handleClose}
-                            closeAfterTransition
-                            slots={{ backdrop: Backdrop }}
-                            slotProps={{
-                                backdrop: {
-                                    timeout: 100,
-                                },
-                            }}
-                        >
-                            <Fade in={open}>
-                                <Box sx={modalStyle}>
-                                    <Typography id="transition-modal-title" variant="h6" component="h2">
-                                    </Typography>
-                                    <Typography id="transition-modal-description" sx={{ display: 'flex', justifyContent: 'center' }}>
-                                        Added {propItem.name} to order!
-                                    </Typography>
-                                </Box>
-                            </Fade>
-                        </Modal>
                     </CardContent>
                 </Collapse>
+                <Modal
+                    aria-labelledby="transition-modal-title"
+                    aria-describedby="transition-modal-description"
+                    open={open}
+                    onClose={handleClose}
+                    closeAfterTransition
+                    slots={{ backdrop: Backdrop }}
+                    slotProps={{
+                        backdrop: {
+                            timeout: 100,
+                        },
+                    }}
+                >
+                    <Fade in={open}>
+                        <Box sx={modalStyle}>
+                            <Typography id="transition-modal-title" variant="h6" component="h2">
+                            </Typography>
+                            <Typography id="transition-modal-description" sx={{ display: 'flex', justifyContent: 'center' }}>
+                                Added {propItem.name} to order!
+                            </Typography>
+                        </Box>
+                    </Fade>
+                </Modal>
             </Card>
         </Grid>
     )

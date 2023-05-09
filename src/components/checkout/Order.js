@@ -36,16 +36,16 @@ export const Order = ({ propOrderItem, setMagicItems }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  
-// Dice Roller
-  // var dice = {
-  //   sides: 6,
-  //   roll: function () {
-  //     var randomNumber = Math.floor(Math.random() * this.sides) + 1;
-  //     return randomNumber;
-  //   }
-  // }
-  
+
+  // Dice Roller
+  const dTwenty = {
+    sides: 20,
+    roll: function () {
+      const randomNumber = Math.floor(Math.random() * dTwenty.sides) + 1;
+      return randomNumber;
+    }
+  }
+
   return (
     <TableRow key={propOrderItem.magicItem?.name}>
       <TableCell sx={{ fontSize: 'large' }}>{propOrderItem.magicItem?.name}</TableCell>

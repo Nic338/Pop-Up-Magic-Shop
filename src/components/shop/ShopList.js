@@ -4,7 +4,9 @@ import { bodyTheme, theme } from "../styles"
 
 export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems }) => {
 
-    //filter by rarity
+    // Three functions, each one using the array from the previous. 
+    // First choice uses the state of magicItems as it's starting point
+    //Average Party Level
     const levelChoice = () => {
         let myLeveledItems = []
         if (levelInfo.partyLevel >= 17 && levelInfo.partyLevel <= 20) {
@@ -25,8 +27,7 @@ export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems }) => {
         }
     }
 
-    // console.log(levelChoice())
-    // fitler by price
+    // Financial Status of the Shop
     const wealthChoice = (leveledItems) => {
         let myPricedItems = []
         if (wealthInfo.shopWealth === 1) {
@@ -51,11 +52,7 @@ export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems }) => {
         }
     }
 
-
-
-    //level choice and wealth choice both added to a new array
-    //new array and setMagicItems so that areaChoice will be the last thing to run
-
+    //Shop Location
     const areaChoice = (pricedItems) => {
         let myLimitedItems = []
         const randomMagicItems = pricedItems.map(x => {
@@ -98,9 +95,9 @@ export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems }) => {
         <>
             <ThemeProvider theme={bodyTheme}>
                 <CssBaseline>
-                    <Typography variant="h2" align="center" m={8} >Your Item Shop</Typography>
+                    <Typography variant="h1" align="center" mt={8} mb={4} >Your Item Shop</Typography>
                     <Grid container>
-                        <Box sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
+                        <Box sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center", alignItems: "center" }}>
                             {
                                 itemsToShow().map(
                                     (magicItem) => <ShopItem key={`${magicItem.id}`} propItem={magicItem} />
@@ -108,7 +105,7 @@ export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems }) => {
                             }
                         </Box>
                     </Grid>
-                    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 3, marginBottom: 2 }}>
                         <ThemeProvider theme={theme}>
                             <Button variant="contained" onClick={() => reloadPage()}>Generate a New Shop</Button>
                             <Button variant="contained" href="/orders" sx={{ marginLeft: 3 }}> Go to my order</Button>
