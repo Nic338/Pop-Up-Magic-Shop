@@ -14,7 +14,7 @@ export const HomePage = ({ levelInfo, setLevelInfo, levelSelectList, areaInfo, s
         <>
             <ThemeProvider theme={bodyTheme}>
                 <CssBaseline>
-                    <Typography variant="h2" align="center" mt={8} mb={8}>
+                    <Typography variant="h1" align="center" mt={8} mb={8}>
                         Welcome to the Pop Up Magic Shop!
                     </Typography>
                     <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
