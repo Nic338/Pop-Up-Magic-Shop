@@ -36,22 +36,19 @@ export const ShopItem = ({ propItem }) => {
     const handleClose = () => setOpen(false);
     // const [magicItemIds, updateMagicItemIds] = React.useState([])
 
-    
+
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
-    
-    const magicItemsArray = []
-    const handleAddItemToOrder = (evt) => {
-        evt.preventDefault()
+
+
+    const handleAddItemToOrder = () => {
         const itemToSendToAPI = {
             magicItemId: propItem.id
         }
-     magicItemsArray.push(itemToSendToAPI)
-     
+        return createNewOrderData(itemToSendToAPI)
+
     }
-    console.log(magicItemsArray)
-    
 
     return (
         <Grid>
@@ -66,7 +63,7 @@ export const ShopItem = ({ propItem }) => {
                     </Typography>
                     <ThemeProvider theme={selectTheme}>
                         <Button variant='text' size='small' onClick={
-                            () => handleAddItemToOrder((evt) => evt.target.value)}>Add to Order</Button>
+                            () => handleAddItemToOrder().then(() => handleOpen())}>Add to Order</Button>
                     </ThemeProvider>
                 </CardContent>
                 <CardActions>

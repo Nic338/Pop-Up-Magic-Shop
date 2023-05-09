@@ -43,8 +43,16 @@ export const Orders = () => {
   }, 0)
 
   const clearAllOrders = () => {
-      deleteAllOrders(orders)
-      navigate("/")
+    if (orders.length > 0) {
+      deleteAllOrders(orders[0].id)
+        .then(() => {
+          const newArray = orders.shift()
+          setOrders(newArray)
+
+          clearAllOrders()
+        })
+    }
+    navigate("/")
   }
 
 
@@ -84,16 +92,16 @@ export const Orders = () => {
               </Table>
             </TableContainer>
           </ThemeProvider>
-          <Box sx={{ display: 'flex', justifyContent: 'center', topMargin: 5 , paddingTop: 6}}>
+          <Box sx={{ display: 'flex', justifyContent: 'center', topMargin: 5, paddingTop: 6 }}>
             <ThemeProvider theme={theme}>
               <Button variant='contained' onClick={(event) => {
                 event.preventDefault()
-                clearAllOrders(orders)
+                clearAllOrders()
               }} sx={{ topMargin: 5 }}>Remove Orders</Button>
             </ThemeProvider>
           </Box>
           <Box>
-            <DiscountForm orderPrice={totalPrice}/>
+            <DiscountForm orderPrice={totalPrice} />
           </Box>
         </CssBaseline>
       </ThemeProvider>

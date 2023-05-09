@@ -1,56 +1,32 @@
-import { Box, TextField } from "@mui/material"
-import { useState } from "react"
+import { Box, TextField, Typography } from "@mui/material"
+import { useEffect, useState } from "react"
 
-export const DiscountForm = ({orderPrice}) => {
-    const [discount, setDiscount] = useState({
-        price: orderPrice,
-        discount: 0,
-        total: 0,
-        finalPrice: 0
-
-    })
+export const DiscountForm = ({ orderPrice }) => {
+    const [discount, setDiscount] = useState(0)
+    const [finalPrice, setFinalPrice] = useState(0)
 
 
-const handleDiscount = () => {
-    setDiscount({
-        total: discount.totalDiscount(),
-        finalPrice: discount.getFinalPrice()
-    })
-}
-
-const totalDiscount = () => {
-    return Math.abs((((1-(discount.discount/100)))-1)*100)
-}
-
-const getFinalPrice = () => {
-    return discount.price-(discount.price * discount.totalDiscount()/100)
-}
-
+    const handleDiscount = (event) => {
+        const discountValue = event.target.value
+        setDiscount(discountValue)
+        const discountedPrice = orderPrice * (1 - (discountValue / 100))
+        setFinalPrice(discountedPrice)
+    }
 
     return (
-        <Box sx={{display: 'flex', justifyContent: 'center', marginTop: 4}}>
-            <TextField 
-            id="outlined-read-only-price-input" 
-            label="Initial Price" 
-            variant="outlined" 
-            defaultValue={discount.price}
-            InputProps={{
-                readOnly: true,
-            }}/>
-            <TextField 
-            id="outlined-discount-percentage"
-            label="Discount Percentage"
-            variant="outlined"
-            value={discount.discount}
-            onChange={() => handleDiscount()}/>
-            <TextField 
-            id="outlined-total-price"
-            label="Total Price"
-            variant="outlined"
-            defaultValue={discount.finalPrice}
-            inputProps={{
-                readOnly: true
-            }}/>
+        <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 4 }}>
+            <Typography variant="h5" m={2}>
+                Initial Price: {orderPrice}gp
+            </Typography>
+            <TextField
+                name="discount"
+                id="outlined-discount-percentage"
+                label="Discount Percentage"
+                variant="outlined"
+                value={discount}
+                type="number"
+                onChange={handleDiscount} />
+            <Typography variant="h5" m={2}>Final Price: {finalPrice.toFixed(0)}gp</Typography>
         </Box>
     )
 }
