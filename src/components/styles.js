@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material';
 import { makeStyles } from 'tss-react/mui';
-
+//Styles page to have themes for MUI to use throughout my app
 export const useStyles = makeStyles(() => ({
     shopSelector: {
         minWidth: 300,
@@ -19,7 +19,7 @@ export const modalStyle = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-  };
+};
 
 export const theme = createTheme({
     palette: {

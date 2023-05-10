@@ -1,4 +1,4 @@
-import { useActionData } from "react-router-dom"
+//Spaghetti with Tommy to make a function that POSTs each item from my external API into my local database
 export const Stuffs = () => {
 const magicStuffs = [
     {
@@ -2374,13 +2374,12 @@ const magicStuffs = [
 ]
 //magicStuffs is the giant array of magic items from the eternal API
 
-//create a function
+//create a recursive function
 const doThething = (int) => {
     let i = 0
     if( int > 0){
         i = int
     }
-
     return fetch(`http://localhost:8088/magicItems`, {
         method: "POST",
         headers: {
@@ -2399,7 +2398,6 @@ const doThething = (int) => {
 }
 const usableStuffs = magicStuffs
 
-// console.log(usableStuffs)
 return <></>
 
 }

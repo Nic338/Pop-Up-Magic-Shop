@@ -28,6 +28,7 @@ export const Orders = () => {
     getMagicItems()
       .then((itemsArray) => setMagicItems(itemsArray))
   }, [])
+  
   const prices = () => {
     let prices = []
     orders.map((order) => {
@@ -42,6 +43,7 @@ export const Orders = () => {
     return a + b;
   }, 0)
 
+// Recursive function that deletes each order at [0] until the array is empty again
   const clearAllOrders = () => {
     if (orders.length > 0) {
       deleteAllOrders(orders[0].id)
