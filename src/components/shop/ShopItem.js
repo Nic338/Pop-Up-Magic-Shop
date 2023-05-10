@@ -34,7 +34,6 @@ export const ShopItem = ({ propItem }) => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    // const [magicItemIds, updateMagicItemIds] = React.useState([])
 
 
     const handleExpandClick = () => {
@@ -52,7 +51,7 @@ export const ShopItem = ({ propItem }) => {
 
     return (
         <Grid>
-            <Card sx={{ maxWidth: 290, padding: 1, bgcolor: '#716969', color: "white", marginBottom: 3, marginLeft: 1, }} key={propItem.id}>
+            <Card sx={{ maxWidth: 290, padding: 1, bgcolor: '#716969', color: "white", marginBottom: 3, marginLeft: 1, marginRight: 1}} key={propItem.id}>
                 <CardHeader title="" />
                 <CardContent>
                     <Typography variant='body'>

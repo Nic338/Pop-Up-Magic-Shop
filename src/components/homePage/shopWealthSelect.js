@@ -21,7 +21,7 @@ export const Wealths = ({ wealthInfo, setWealthSelect }) => {
             <ThemeProvider theme={selectTheme}>
                 <Select
                     id="wealth-select"
-                    label="Financial Status of Shop"
+                    label=" Financial Status of Shop "
                     displayEmpty
                     value={wealthInfo.shopWealth}
                     onChange={event => setWealthSelect(event)}>

@@ -21,7 +21,7 @@ export const Levels = ({ levelInfo, setLevelSelect }) => {
             <ThemeProvider theme={selectTheme}>
                 <Select
                     id="level-select"
-                    label='Average Party Level'
+                    label=' Average Party Level '
                     displayEmpty
                     value={levelInfo.partyLevel}
                     onChange={event => setLevelSelect(event)}>

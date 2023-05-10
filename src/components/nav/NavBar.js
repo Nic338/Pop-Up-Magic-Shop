@@ -1,9 +1,6 @@
 import { AppBar, Box, Button, ThemeProvider, Toolbar, Typography } from "@mui/material"
-import { Link, useNavigate } from "react-router-dom"
 import { theme } from "../styles"
 export const NavBar = () => {
-
-    const navigate = useNavigate()
 
     return (
         <ThemeProvider theme={theme}>

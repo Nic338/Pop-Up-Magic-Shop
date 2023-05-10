@@ -6,9 +6,9 @@ export const MagicShop = () => {
     return (
         <Routes>
             <Route path="*" element={
-               <> 
-               <NavBar />
-                <ApplicationViews />
+                <>
+                    <NavBar />
+                    <ApplicationViews />
                 </>
             } />
         </Routes>

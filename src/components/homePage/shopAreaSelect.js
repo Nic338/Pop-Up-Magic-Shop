@@ -21,7 +21,7 @@ export const Areas = ({ areaInfo, setAreaSelect }) => {
             <ThemeProvider theme={selectTheme}>
                 <Select
                     id="area-select"
-                    label='Shop Location'
+                    label=' Shop Location '
                     displayEmpty
                     value={areaInfo.shopArea}
                     onChange={event => setAreaSelect(event)}>

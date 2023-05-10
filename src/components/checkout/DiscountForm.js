@@ -1,5 +1,5 @@
 import { Box, TextField, Typography } from "@mui/material"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 export const DiscountForm = ({ orderPrice }) => {
     const [discount, setDiscount] = useState(0)

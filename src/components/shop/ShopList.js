@@ -5,7 +5,7 @@ import { bodyTheme, theme } from "../styles"
 export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems }) => {
 
     // Three functions, each one using the array from the previous. 
-    // First choice uses the state of magicItems as it's starting point
+    // First choice uses the prop of magicItems as it's starting point
     //Average Party Level
     const levelChoice = () => {
         let myLeveledItems = []
@@ -28,6 +28,7 @@ export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems }) => {
     }
 
     // Financial Status of the Shop
+    // filter leveledItems by different values of price
     const wealthChoice = (leveledItems) => {
         let myPricedItems = []
         if (wealthInfo.shopWealth === 1) {
@@ -52,27 +53,50 @@ export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems }) => {
         }
     }
 
-    //Shop Location
-    const areaChoice = (pricedItems) => {
-        let myLimitedItems = []
-        const randomMagicItems = pricedItems.map(x => {
-            const rand = Math.floor(Math.random() * pricedItems.length)
-            return pricedItems[rand]
+    //Randomize pricedItems array
+    //myRandomizedItems needs to live in global scope otherwise it keeps being replaced inside the loop
+    let myRandomizedItems = []
+    const randomMagicItems = (pricedItems) => {
+        // Loop through the pricedItems array
+        pricedItems.forEach(pricedItem => {
+            //create a variable to get a random index of priced items
+            let random = Math.floor(Math.random() * pricedItems.length);
+            const randomItem = pricedItems[random]
+            //if the random item is not included in myRandomizedItems, add it
+            if (!myRandomizedItems.includes(randomItem)) {
+                myRandomizedItems.push(randomItem);
+            } else {
+                //keep looping until we are all out of duplicates
+                if (myRandomizedItems.length < pricedItems.length) {
+                    randomMagicItems(pricedItems);
+                } else {
+                    //stop looping for the love of god
+                    return false;
+                }
+            }
+
         })
+        return myRandomizedItems
+    }
+
+    //Shop Location
+    //slice the randomizedItems based on what I chose for this select
+    const areaChoice = (myRandomizedItems) => {
+        let myLimitedItems = []
         if (areaInfo.shopArea === 1) {
-            myLimitedItems = randomMagicItems.slice(0, 3)
+            myLimitedItems = myRandomizedItems.slice(0, 3)
             return myLimitedItems
         } else if (areaInfo.shopArea === 2) {
-            myLimitedItems = randomMagicItems.slice(0, 5)
+            myLimitedItems = myRandomizedItems.slice(0, 5)
             return myLimitedItems
         } else if (areaInfo.shopArea === 3) {
-            myLimitedItems = randomMagicItems.slice(0, 8)
+            myLimitedItems = myRandomizedItems.slice(0, 8)
             return myLimitedItems
         } else if (areaInfo.shopArea === 4) {
-            myLimitedItems = randomMagicItems.slice(0, 11)
+            myLimitedItems = myRandomizedItems.slice(0, 11)
             return myLimitedItems
         } else if (areaInfo.shopArea === 5) {
-            myLimitedItems = randomMagicItems.slice(0, 14)
+            myLimitedItems = myRandomizedItems.slice(0, 14)
             return myLimitedItems
         }
 
@@ -81,7 +105,8 @@ export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems }) => {
     const itemsToShow = () => {
         const leveledItems = levelChoice()
         const pricedItems = wealthChoice(leveledItems)
-        const areaItems = areaChoice(pricedItems)
+        const randomedItems = randomMagicItems(pricedItems)
+        const areaItems = areaChoice(randomedItems)
 
         return areaItems
     }
@@ -96,15 +121,15 @@ export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems }) => {
             <ThemeProvider theme={bodyTheme}>
                 <CssBaseline>
                     <Typography variant="h1" align="center" mt={8} mb={4} >Your Item Shop</Typography>
-                    <Grid container>
-                        <Box sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center", alignItems: "center" }}>
-                            {
-                                itemsToShow().map(
-                                    (magicItem) => <ShopItem key={`${magicItem.id}`} propItem={magicItem} />
-                                )
-                            }
-                        </Box>
-                    </Grid>
+
+                    <Box sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center", alignItems: "center" }}>
+                        {
+                            itemsToShow().map(
+                                (magicItem) => <ShopItem key={`${magicItem.id}`} propItem={magicItem} />
+                            )
+                        }
+                    </Box>
+
                     <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 3, marginBottom: 2 }}>
                         <ThemeProvider theme={theme}>
                             <Button variant="contained" onClick={() => reloadPage()}>Generate a New Shop</Button>
