@@ -51,7 +51,7 @@ export const ShopItem = ({ propItem }) => {
 
     return (
         <Grid>
-            <Card sx={{ maxWidth: 290, padding: 1, bgcolor: '#716969', color: "white", marginBottom: 3, marginLeft: 1, marginRight: 1}} key={propItem.id}>
+            <Card sx={{ maxWidth: 250, padding: 1, bgcolor: '#414535', color: "#fbfbfb", marginBottom: 3, marginLeft: 1, marginRight: 1}} key={propItem.id}>
                 <CardHeader title="" />
                 <CardContent>
                     <Typography variant='body'>
@@ -61,7 +61,7 @@ export const ShopItem = ({ propItem }) => {
                         {propItem.price}gp
                     </Typography>
                     <ThemeProvider theme={selectTheme}>
-                        <Button variant='text' size='small' onClick={
+                        <Button variant='text' size='small'sx={{marginTop: 1}} onClick={
                             () => handleAddItemToOrder().then(() => handleOpen())}>Add to Order</Button>
                     </ThemeProvider>
                 </CardContent>
@@ -74,7 +74,7 @@ export const ShopItem = ({ propItem }) => {
                         <ExpandMoreIcon />
                     </ExpandMore>
                 </CardActions>
-                <Collapse in={expanded} timeout="auto" unmountOnExit color='white'>
+                <Collapse in={expanded} timeout="auto" unmountOnExit color='#fpfpfp'>
                     <CardContent>
                         <Typography variant='h6'>
                             {propItem.type}

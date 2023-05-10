@@ -15,7 +15,8 @@ export const modalStyle = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
-    bgcolor: 'background.paper',
+    bgcolor: '#716969',
+    color: '#fpfpfp',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
@@ -33,8 +34,10 @@ export const bodyTheme = createTheme({
         MuiCssBaseline: {
             styleOverrides: {
                 body: {
-                    backgroundColor: '#f2e3bc',
-                    color: '#414535'
+                    background: `url("https://cdnb.artstation.com/p/assets/images/images/000/234/511/large/wiebke-scholz-sts-between-worlds-bg01.jpg?1412414034")`,
+                    backgroundSize: 'fill',
+                    color: '#fbfbfb',
+                    textShadow: '2px 2px black'
                 }
             }
         }
@@ -43,7 +46,7 @@ export const bodyTheme = createTheme({
 export const selectTheme = createTheme({
     palette: {
         primary: {
-            main: '#53917e'
+            main: '#fpfpfp'
         }
     }
 })

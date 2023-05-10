@@ -24,10 +24,11 @@ export const Areas = ({ areaInfo, setAreaSelect }) => {
                     label=' Shop Location '
                     displayEmpty
                     value={areaInfo.shopArea}
-                    onChange={event => setAreaSelect(event)}>
+                    onChange={event => setAreaSelect(event)}
+                    sx={{background: '#414535', color: 'fbfbfb'}}>
                     {
                         shopAreas.map((shopArea) => {
-                            return <MenuItem key={shopArea.id} value={shopArea.id}>
+                            return <MenuItem key={shopArea.id} value={shopArea.id} sx={{background: '#414535', color: '#fbfbfb'}}>
                                 {shopArea.area}
                             </MenuItem>
                         })

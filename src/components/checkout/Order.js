@@ -48,7 +48,7 @@ export const Order = ({ propOrderItem, setMagicItems }) => {
 
   return (
     <TableRow key={propOrderItem.magicItem?.name}>
-      <TableCell sx={{ fontSize: 'large' }}>{propOrderItem.magicItem?.name}</TableCell>
+      <TableCell sx={{ fontSize: 'large', color: '#fbfbfb' }}>{propOrderItem.magicItem?.name}</TableCell>
       <TableCell>
         <ThemeProvider theme={theme}>
           <Button variant="contained" size="small" onClick={() => handleOpen()}>
@@ -93,9 +93,9 @@ export const Order = ({ propOrderItem, setMagicItems }) => {
           </Fade>
         </Modal>
       </TableCell>
-      <TableCell align="right" sx={{ fontSize: 'large' }}>{propOrderItem.magicItem?.type}</TableCell>
-      <TableCell align="right" sx={{ fontSize: 'large' }}>{propOrderItem.magicItem?.rarity.charAt(0).toUpperCase() + propOrderItem.magicItem?.rarity.slice(1)}</TableCell>
-      <TableCell align="right" sx={{ fontSize: 'large' }}>{propOrderItem.magicItem?.price}gp</TableCell>
+      <TableCell align="right" sx={{ fontSize: 'large', color: '#fbfbfb' }}>{propOrderItem.magicItem?.type}</TableCell>
+      <TableCell align="right" sx={{ fontSize: 'large', color: '#fbfbfb' }}>{propOrderItem.magicItem?.rarity.charAt(0).toUpperCase() + propOrderItem.magicItem?.rarity.slice(1)}</TableCell>
+      <TableCell align="right" sx={{ fontSize: 'large', color: '#fbfbfb' }}>{propOrderItem.magicItem?.price}gp</TableCell>
     </TableRow>
   )
 }

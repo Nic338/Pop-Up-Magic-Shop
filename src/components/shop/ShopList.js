@@ -4,8 +4,8 @@ import { bodyTheme, theme } from "../styles"
 
 export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems }) => {
 
-    // Three functions, each one using the array from the previous. 
-    // First choice uses the prop of magicItems as it's starting point
+    // Four functions, each one using the array from the previous. 
+    // First choice uses the prop of magicItems as it's starting point and filters them by their rarity
     //Average Party Level
     const levelChoice = () => {
         let myLeveledItems = []
@@ -27,8 +27,8 @@ export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems }) => {
         }
     }
 
+    // Second one filters the items from levelChoice by price
     // Financial Status of the Shop
-    // filter leveledItems by different values of price
     const wealthChoice = (leveledItems) => {
         let myPricedItems = []
         if (wealthInfo.shopWealth === 1) {
@@ -53,9 +53,9 @@ export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems }) => {
         }
     }
 
-    //Randomize pricedItems array
     //myRandomizedItems needs to live in global scope otherwise it keeps being replaced inside the loop
     let myRandomizedItems = []
+    //Third function randomizes the array from wealthChoice, making sure to exclude any duplicates
     const randomMagicItems = (pricedItems) => {
         // Loop through the pricedItems array
         pricedItems.forEach(pricedItem => {
@@ -74,13 +74,12 @@ export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems }) => {
                     return false;
                 }
             }
-
         })
         return myRandomizedItems
     }
 
+    //Last function slices the randomizedItems based on what I select
     //Shop Location
-    //slice the randomizedItems based on what I chose for this select
     const areaChoice = (myRandomizedItems) => {
         let myLimitedItems = []
         if (areaInfo.shopArea === 1) {
@@ -101,7 +100,7 @@ export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems }) => {
         }
 
     }
-
+    //Last function to chain together all of the logic above and return the finalized array
     const itemsToShow = () => {
         const leveledItems = levelChoice()
         const pricedItems = wealthChoice(leveledItems)
@@ -120,7 +119,7 @@ export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems }) => {
         <>
             <ThemeProvider theme={bodyTheme}>
                 <CssBaseline>
-                    <Typography variant="h1" align="center" mt={8} mb={4} >Your Item Shop</Typography>
+                    <Typography variant="h1" align="center" mt={8} mb={4} sx={{textShadow: '3px 3px  black'}}>Your Item Shop</Typography>
 
                     <Box sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center", alignItems: "center" }}>
                         {

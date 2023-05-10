@@ -24,10 +24,15 @@ export const Levels = ({ levelInfo, setLevelSelect }) => {
                     label=' Average Party Level '
                     displayEmpty
                     value={levelInfo.partyLevel}
-                    onChange={event => setLevelSelect(event)}>
+                    onChange={event => setLevelSelect(event)}
+                    sx={{ background: '#414535', color: 'fbfbfb' }}>
                     {
                         partyLevels.map((partyLevel) => {
-                            return <MenuItem key={partyLevel.id} value={partyLevel.id}>
+                            return <MenuItem key={partyLevel.id} value={partyLevel.id} sx={{
+                                background: '#414535', color: 'white', ' &.MuiSelect-select-MuiInputBase-input': {
+                                    color: 'red'
+                                }
+                            }}>
                                 {partyLevel.level}
                             </MenuItem>
                         })

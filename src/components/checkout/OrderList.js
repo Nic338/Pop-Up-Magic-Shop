@@ -63,37 +63,27 @@ export const Orders = () => {
       <ThemeProvider theme={bodyTheme}>
         <CssBaseline>
           <Typography variant="h2" align="center" mt={3} mb={4}>Checkout</Typography>
-          <ThemeProvider theme={selectTheme}>
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 700, bottomMargin: 8 }} aria-label="spanning table" mb={2}>
+            <TableContainer component={Paper} sx={{bgcolor: '#818a69'}}>
+              <Table sx={{ minWidth: 700, bottomMargin: 8,}} aria-label="spanning table" mb={2}>
                 <TableHead>
                   <TableRow>
-                    <TableCell align="center" colSpan={4} sx={{ fontSize: "larger" }}>
-                      Details
-                    </TableCell>
-                    <TableCell align="right" sx={{ fontSize: "larger" }}>Price</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell sx={{ fontSize: "large" }}>Name</TableCell>
-                    <TableCell sx={{ fontSize: "large" }}>Edit Item</TableCell>
-                    <TableCell align="right" sx={{ fontSize: "large" }}>Item Type</TableCell>
-                    <TableCell align="right" sx={{ fontSize: "large" }}>Rarity</TableCell>
-                    <TableCell align="right" sx={{ fontSize: "large" }}>Total</TableCell>
+                    <TableCell sx={{ fontSize: "large", color: '#fbfbfb', bgcolor: '#414535' }}>Name</TableCell>
+                    <TableCell sx={{ fontSize: "large", color: '#fbfbfb', bgcolor: '#414535' }}>Edit Item</TableCell>
+                    <TableCell align="right" sx={{ fontSize: "large", color: '#fbfbfb', bgcolor: '#414535' }}>Item Type</TableCell>
+                    <TableCell align="right" sx={{ fontSize: "large", color: '#fbfbfb', bgcolor: '#414535' }}>Rarity</TableCell>
+                    <TableCell align="right" sx={{ fontSize: "large", color: '#fbfbfb', bgcolor: '#414535' }}>Total</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {orders.map(
                     (order) => <Order key={`${order.id}`} propOrderItem={order} setMagicItems={setMagicItems} />
                   )}
-
                   <TableRow>
-                    <TableCell colSpan={4} sx={{ fontSize: 'larger' }}>Total</TableCell>
-                    <TableCell align="right" sx={{ fontSize: 'larger' }}>{(totalPrice)}gp</TableCell>
+                    <TableCell colSpan={1} sx={{ fontSize: 'larger', color: '#fbfbfb', justifySelf: 'center' }}>Total: {(totalPrice)}gp</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
             </TableContainer>
-          </ThemeProvider>
           <Box sx={{ display: 'flex', justifyContent: 'center', topMargin: 5, paddingTop: 6 }}>
             <ThemeProvider theme={theme}>
               <Button variant='contained' onClick={(event) => {
@@ -102,11 +92,11 @@ export const Orders = () => {
               }} sx={{ topMargin: 5 }}>Remove Orders</Button>
             </ThemeProvider>
           </Box>
+        </CssBaseline>
+      </ThemeProvider>
           <Box>
             <DiscountForm orderPrice={totalPrice} />
           </Box>
-        </CssBaseline>
-      </ThemeProvider>
     </>
   )
 }
