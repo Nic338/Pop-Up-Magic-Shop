@@ -93,9 +93,9 @@ export const Order = ({ propOrderItem, setMagicItems }) => {
           </Fade>
         </Modal>
       </TableCell>
-      <TableCell align="right" sx={{ fontSize: 'large', color: '#fbfbfb' }}>{propOrderItem.magicItem?.type}</TableCell>
-      <TableCell align="right" sx={{ fontSize: 'large', color: '#fbfbfb' }}>{propOrderItem.magicItem?.rarity.charAt(0).toUpperCase() + propOrderItem.magicItem?.rarity.slice(1)}</TableCell>
-      <TableCell align="right" sx={{ fontSize: 'large', color: '#fbfbfb' }}>{propOrderItem.magicItem?.price}gp</TableCell>
+      <TableCell align="right" sx={{ fontSize: 'large', color: '#fbfbfb', textTransform: 'capitalize' }}>{propOrderItem.magicItem?.type}</TableCell>
+      <TableCell align="right" sx={{ fontSize: 'large', color: '#fbfbfb', textTransform: 'capitalize' }}>{propOrderItem.magicItem?.rarity.charAt(0).toUpperCase() + propOrderItem.magicItem?.rarity.slice(1)}</TableCell>
+      <TableCell align="right" sx={{ fontSize: 'large', color: '#fbfbfb', textTransform: 'capitalize' }}><span style={{ color: '#f7d865' }}>{propOrderItem.magicItem?.price}</span>gp</TableCell>
     </TableRow>
   )
 }

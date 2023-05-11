@@ -119,17 +119,17 @@ export const ShopList = ({ levelInfo, areaInfo, wealthInfo, magicItems }) => {
         <>
             <ThemeProvider theme={bodyTheme}>
                 <CssBaseline>
-                    <Typography variant="h1" align="center" mt={8} mb={4} sx={{textShadow: '3px 3px  black'}}>Your Item Shop</Typography>
+                    <Typography variant="h1" align="center" mt={4} mb={4} sx={{ textShadow: '3px 3px  black' }}>Your Item Shop</Typography>
 
-                    <Box sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center", alignItems: "center" }}>
+                    <Grid container spacing={.5} ml={3}>
                         {
                             itemsToShow().map(
                                 (magicItem) => <ShopItem key={`${magicItem.id}`} propItem={magicItem} />
                             )
                         }
-                    </Box>
+                    </Grid>
 
-                    <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 3, marginBottom: 2 }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: 2 }}>
                         <ThemeProvider theme={theme}>
                             <Button variant="contained" onClick={() => reloadPage()}>Generate a New Shop</Button>
                             <Button variant="contained" href="/orders" sx={{ marginLeft: 3 }}> Go to my order</Button>

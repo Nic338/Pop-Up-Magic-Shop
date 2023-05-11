@@ -28,7 +28,7 @@ export const Orders = () => {
     getMagicItems()
       .then((itemsArray) => setMagicItems(itemsArray))
   }, [])
-  
+
   const prices = () => {
     let prices = []
     orders.map((order) => {
@@ -43,7 +43,7 @@ export const Orders = () => {
     return a + b;
   }, 0)
 
-// Recursive function that deletes each order at [0] until the array is empty again
+  // Recursive function that deletes each order at [0] until the array is empty again
   const clearAllOrders = () => {
     if (orders.length > 0) {
       deleteAllOrders(orders[0].id)
@@ -63,27 +63,27 @@ export const Orders = () => {
       <ThemeProvider theme={bodyTheme}>
         <CssBaseline>
           <Typography variant="h2" align="center" mt={3} mb={4}>Checkout</Typography>
-            <TableContainer component={Paper} sx={{bgcolor: '#818a69'}}>
-              <Table sx={{ minWidth: 700, bottomMargin: 8,}} aria-label="spanning table" mb={2}>
-                <TableHead>
-                  <TableRow>
-                    <TableCell sx={{ fontSize: "large", color: '#fbfbfb', bgcolor: '#414535' }}>Name</TableCell>
-                    <TableCell sx={{ fontSize: "large", color: '#fbfbfb', bgcolor: '#414535' }}>Edit Item</TableCell>
-                    <TableCell align="right" sx={{ fontSize: "large", color: '#fbfbfb', bgcolor: '#414535' }}>Item Type</TableCell>
-                    <TableCell align="right" sx={{ fontSize: "large", color: '#fbfbfb', bgcolor: '#414535' }}>Rarity</TableCell>
-                    <TableCell align="right" sx={{ fontSize: "large", color: '#fbfbfb', bgcolor: '#414535' }}>Total</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {orders.map(
-                    (order) => <Order key={`${order.id}`} propOrderItem={order} setMagicItems={setMagicItems} />
-                  )}
-                  <TableRow>
-                    <TableCell colSpan={1} sx={{ fontSize: 'larger', color: '#fbfbfb', justifySelf: 'center' }}>Total: {(totalPrice)}gp</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
+          <TableContainer component={Paper} sx={{ bgcolor: '#818a69' }}>
+            <Table sx={{ minWidth: 700, bottomMargin: 8 }} aria-label="spanning table" mb={2}>
+              <TableHead>
+                <TableRow>
+                  <TableCell sx={{ fontSize: "large", color: '#fbfbfb', bgcolor: '#414535' }}>Name</TableCell>
+                  <TableCell sx={{ fontSize: "large", color: '#fbfbfb', bgcolor: '#414535' }}>Edit Item</TableCell>
+                  <TableCell align="right" sx={{ fontSize: "large", color: '#fbfbfb', bgcolor: '#414535' }}>Item Type</TableCell>
+                  <TableCell align="right" sx={{ fontSize: "large", color: '#fbfbfb', bgcolor: '#414535' }}>Rarity</TableCell>
+                  <TableCell align="right" sx={{ fontSize: "large", color: '#fbfbfb', bgcolor: '#414535' }}>Total</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {orders.map(
+                  (order) => <Order key={`${order.id}`} propOrderItem={order} setMagicItems={setMagicItems} />
+                )}
+                <TableRow>
+                  <TableCell align="right" colSpan={5} sx={{ fontSize: 'larger', color: '#fbfbfb', justifyContent: 'right' }}>Total: <span style={{ color: '#f7d865' }}>{(totalPrice)}</span>gp</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
           <Box sx={{ display: 'flex', justifyContent: 'center', topMargin: 5, paddingTop: 6 }}>
             <ThemeProvider theme={theme}>
               <Button variant='contained' onClick={(event) => {
@@ -94,9 +94,9 @@ export const Orders = () => {
           </Box>
         </CssBaseline>
       </ThemeProvider>
-          <Box>
-            <DiscountForm orderPrice={totalPrice} />
-          </Box>
+      <Box>
+        <DiscountForm orderPrice={totalPrice} />
+      </Box>
     </>
   )
 }

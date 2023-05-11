@@ -12,13 +12,13 @@ export const HomePage = ({ levelInfo, setLevelInfo, levelSelectList, areaInfo, s
         <>
             <ThemeProvider theme={bodyTheme}>
                 <CssBaseline>
-                    <Typography variant="h1" align="center" mt={8} mb={8} sx={{textShadow: '4px 4px 4px black'}}>
+                    <Typography variant="h1" align="center" mt={8} mb={8} sx={{ textShadow: '4px 4px 4px black' }}>
                         Welcome to the Pop Up Magic Shop!
                     </Typography>
                     <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
                         <FormControl className={classes.shopSelector} sx={{ minWidth: 300, marginLeft: 33 }} >
                             <ThemeProvider theme={selectTheme}>
-                                <InputLabel id="party-level-select" sx={{fontWeight: "bolder", color: '#fbfbfb', textShadow: '3px 3px  black'}}>Average Party Level</InputLabel>
+                                <InputLabel id="party-level-select" sx={{ fontWeight: "bolder", color: '#fbfbfb', textShadow: '3px 3px  black' }}>Average Party Level</InputLabel>
                             </ThemeProvider>
                             <Levels setLevelInfo={setLevelInfo}
                                 levelInfo={levelInfo}
@@ -26,7 +26,7 @@ export const HomePage = ({ levelInfo, setLevelInfo, levelSelectList, areaInfo, s
                         </FormControl>
                         <FormControl className={classes.shopSelector} sx={{ minWidth: 300, marginLeft: 33 }}>
                             <ThemeProvider theme={selectTheme}>
-                                <InputLabel id="shop-area-select" sx={{fontWeight: "bolder", color: '#fbfbfb', textShadow: '3px 3px  black'}}>Shop Location</InputLabel>
+                                <InputLabel id="shop-area-select" sx={{ fontWeight: "bolder", color: '#fbfbfb', textShadow: '3px 3px  black' }}>Shop Location</InputLabel>
                             </ThemeProvider>
                             <Areas setAreaInfo={setAreaInfo}
                                 areaInfo={areaInfo}
@@ -35,7 +35,7 @@ export const HomePage = ({ levelInfo, setLevelInfo, levelSelectList, areaInfo, s
 
                         <FormControl className={classes.shopSelector} sx={{ minWidth: 300, marginLeft: 33 }}>
                             <ThemeProvider theme={selectTheme}>
-                                <InputLabel id="shop-wealth" sx={{fontWeight: "bolder", color: '#fbfbfb', textShadow: '3px 3px  black'}}>Financial Status of Shop</InputLabel>
+                                <InputLabel id="shop-wealth" sx={{ fontWeight: "bolder", color: '#fbfbfb', textShadow: '3px 3px  black' }}>Financial Status of Shop</InputLabel>
                             </ThemeProvider>
                             <Wealths setWealthInfo={setWealthInfo}
                                 wealthInfo={wealthInfo}

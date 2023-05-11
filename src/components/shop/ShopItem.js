@@ -50,18 +50,18 @@ export const ShopItem = ({ propItem }) => {
     }
 
     return (
-        <Grid>
-            <Card sx={{ maxWidth: 250, padding: 1, bgcolor: '#414535', color: "#fbfbfb", marginBottom: 3, marginLeft: 1, marginRight: 1}} key={propItem.id}>
+        <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
+            <Card sx={{ maxWidth: 250, padding: 1, bgcolor: '#414535', color: "#fbfbfb", marginBottom: 3, marginLeft: 1, marginRight: 1 }} key={propItem.id}>
                 <CardHeader title="" />
                 <CardContent>
                     <Typography variant='body'>
                         {propItem.name}
                     </Typography>
                     <Typography variant='body2'>
-                        {propItem.price}gp
+                        <span style={{ color: '#f7d865' }}>{propItem.price}</span>gp
                     </Typography>
                     <ThemeProvider theme={selectTheme}>
-                        <Button variant='text' size='small'sx={{marginTop: 1}} onClick={
+                        <Button variant='text' size='small' sx={{ marginTop: 1 }} onClick={
                             () => handleAddItemToOrder().then(() => handleOpen())}>Add to Order</Button>
                     </ThemeProvider>
                 </CardContent>
@@ -76,19 +76,19 @@ export const ShopItem = ({ propItem }) => {
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit color='#fpfpfp'>
                     <CardContent>
-                        <Typography variant='h6'>
+                        <Typography variant='h6' typography={{ textTransform: 'capitalize' }}>
                             {propItem.type}
                         </Typography>
-                        <Typography variant='h6'>
-                            {propItem.rarity.charAt(0).toUpperCase() + propItem.rarity.slice(1)}
+                        <Typography variant='h6' typography={{ textTransform: 'capitalize' }}>
+                            {propItem.rarity}
                         </Typography>
                         <Typography paragraph>
                             <ReactMarkdown>
                                 {propItem.desc}
                             </ReactMarkdown>
                         </Typography>
-                        <Typography paragraph>
-                            {propItem.requires_attunement.charAt(0).toUpperCase() + propItem.requires_attunement.slice(1)}
+                        <Typography paragraph typography={{ textTransform: 'capitalize' }}>
+                            {propItem.requires_attunement}
                         </Typography>
                     </CardContent>
                 </Collapse>

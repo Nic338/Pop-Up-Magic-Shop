@@ -25,10 +25,16 @@ export const Wealths = ({ wealthInfo, setWealthSelect }) => {
                     displayEmpty
                     value={wealthInfo.shopWealth}
                     onChange={event => setWealthSelect(event)}
-                    sx={{background: '#414535', color: 'fbfbfb'}}>
+                    sx={{
+                        background: '#414535',
+                        color: 'fbfbfb',
+                        '& .MuiOutlinedInput-input': {
+                            color: '#fbfbfb'
+                        }
+                    }}>
                     {
                         shopWealths.map((shopWealth) => {
-                            return <MenuItem key={shopWealth.id} value={shopWealth.id} sx={{background: '#414535', color: '#fbfbfb'}}>
+                            return <MenuItem key={shopWealth.id} value={shopWealth.id} sx={{ background: '#414535', color: '#fbfbfb' }}>
                                 {shopWealth.wealth}
                             </MenuItem>
                         })

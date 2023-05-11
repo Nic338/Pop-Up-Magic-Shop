@@ -3,9 +3,9 @@ import { makeStyles } from 'tss-react/mui';
 //Styles page to have themes for MUI to use throughout my app
 export const useStyles = makeStyles(() => ({
     shopSelector: {
-        minWidth: 300,
-        marginLeft: 33,
-        marginTop: 100
+        '& .MuiOutlinedInput-input': {
+            color: 'red'
+        },
     }
 }));
 
@@ -46,7 +46,7 @@ export const bodyTheme = createTheme({
 export const selectTheme = createTheme({
     palette: {
         primary: {
-            main: '#fpfpfp'
+            main: '#fbfbfb'
         }
     }
 })

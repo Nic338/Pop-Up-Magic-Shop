@@ -25,10 +25,16 @@ export const Areas = ({ areaInfo, setAreaSelect }) => {
                     displayEmpty
                     value={areaInfo.shopArea}
                     onChange={event => setAreaSelect(event)}
-                    sx={{background: '#414535', color: 'fbfbfb'}}>
+                    sx={{
+                        background: '#414535',
+                        color: 'fbfbfb',
+                        '& .MuiOutlinedInput-input': {
+                            color: '#fbfbfb'
+                        }
+                    }}>
                     {
                         shopAreas.map((shopArea) => {
-                            return <MenuItem key={shopArea.id} value={shopArea.id} sx={{background: '#414535', color: '#fbfbfb'}}>
+                            return <MenuItem key={shopArea.id} value={shopArea.id} sx={{ background: '#414535', color: '#fbfbfb' }}>
                                 {shopArea.area}
                             </MenuItem>
                         })
