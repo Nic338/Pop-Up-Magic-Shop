@@ -38,11 +38,12 @@ Instructions:
 6. At the checkout page you can change the prices of the items based on your own discretion.
 
   ![Haggle](https://user-images.githubusercontent.com/125293336/265758282-fb67ce86-0ce2-4b4f-962d-1cf38cca626f.png)
+  
 7. Each item has its own price listed, as well as a total for the entire order.
 
   ![Checkout](https://user-images.githubusercontent.com/125293336/265758274-e75eb8de-cd0a-4c4a-95bc-670a053ca1f4.png)
+  
 8. If you want to give a discount to the entire order, the field at the bottom of the page will calculate a percentage discount based on what you would like.
-
 9. Once you are done shopping, click REMOVE ORDERS and you may generate a new shop with all new items.
 
 
