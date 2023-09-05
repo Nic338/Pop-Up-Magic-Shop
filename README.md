@@ -1,70 +1,53 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to Pop Up Magic Shop, a front-end capstone project created with JavaScript and React.js. This tool is designed for Dungeon Masters (DMs) to enhance their Dungeons & Dragons (D&D) games. Pop Up Magic Shop allows DMs to set parameters based on their party's current situation and generates a list of magical items that could be sold in a magic shop within their game world.
 
-## Available Scripts
+This app will let you generate a list of items based on average party level, the type of area they are encountering this shop in, as well as the amount of wealth the shop may have.
 
-In the project directory, you can run:
+Getting Started
 
-### `npm start`
+Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Before you begin, be sure to install the following dependencies:
+``npm install react``
+``npm install react-router-dom``
+``npm install @mui/material @emotion/react @emotion/styled``
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Fork or clone this repository to your local computer.
+2. Using your GitBash terminal ``cd`` into the directory.
+3. Follow the instructions for the Pop Up Magic Shop API below.
 
-### `npm test`
+[Pop Up Magic Shop API](https://github.com/Nic338/Pop-Up-Magic-Shop-API) -- to run the JSON server for our database.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. After your database is running, ``npm start`` while in the ``Pop-Up-Magic-Shop`` folder.
 
-### `npm run build`
+Instructions:
+1. Select three options from the drop downs provided and click generate.
+ 
+  ![Select Options](https://user-images.githubusercontent.com/125293336/265758244-f329ea9c-2e32-4256-a3de-932313973de8.png)
+  
+2. The shop page is randomly generated based on your previous choices. All items have been assigned a price based on community feedback and official pricing from WotC.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  ![Shop Page](https://user-images.githubusercontent.com/125293336/265758253-e0cd515c-65da-42e6-91d5-306823320990.png)
+  
+3. Use the dropdown on each item to read the description and other useful info.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  ![Item Info](https://user-images.githubusercontent.com/125293336/265758264-4b19ec01-8915-4e40-99f1-1bd700f295dd.png)
+  
+4. Click the ADD TO ORDER button if its an item your party wishes to buy.
+5. Click the GO TO MY ORDER button at the bottom of the page to see the checkout page.
+6. At the checkout page you can change the prices of the items based on your own discretion.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  ![Haggle](https://user-images.githubusercontent.com/125293336/265758282-fb67ce86-0ce2-4b4f-962d-1cf38cca626f.png)
+7. Each item has its own price listed, as well as a total for the entire order.
 
-### `npm run eject`
+  ![Checkout](https://user-images.githubusercontent.com/125293336/265758274-e75eb8de-cd0a-4c4a-95bc-670a053ca1f4.png)
+8. If you want to give a discount to the entire order, the field at the bottom of the page will calculate a percentage discount based on what you would like.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+9. Once you are done shopping, click REMOVE ORDERS and you may generate a new shop with all new items.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Technologies Used
+React.js
+JavaScript
+HTML
+CSS
